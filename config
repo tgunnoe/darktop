@@ -1,0 +1,19 @@
+set $mod Mod1
+bindsym $mod+space exec @term@ --config @termconfig@
+output * bg @background@ fill
+bindsym $mod+Shift+apostrophe kill
+
+bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit? This will end your session.' -b 'Yes, exit sway' 'swaymsg exit'
+gaps inner 10
+gaps outer 10
+default_border pixel 0
+default_floating_border pixel 0
+input 0:0:wayland {
+      xkb_layout us(dvorak)
+}
+#exec conky --config=@conky-config@
+
+exec kitty --name=bpytop --config @termconfig@ -e bpytop
+exec kitty --name=ranger --config @termconfig@ -e ranger
+exec kitty --name=cmatrix --config @termconfig@ -e cmatrix -C blue
+exec python ws-1.py
