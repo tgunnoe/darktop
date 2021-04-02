@@ -66,10 +66,12 @@ let
     path = ./ws-1.py;
     name = "ws-1.py";
   };
+
   utils = builtins.path {
     path = ./util;
     name = "extra-container-utils";
   };
+
   includedPackages =
     let pkgsList = map (x: "--prefix PATH : ${x}/bin ")
       [
@@ -89,10 +91,30 @@ pkgs.symlinkJoin {
   name = "nixway-app";
   paths = with pkgs; [ sway waybar hello ranger bpytop conky ];
   buildInputs = with pkgs; [ makeWrapper nixos-container ];
-
+    # if ! test -e /etc/NIXOS; then
+    #   sh ${utils}/install.sh
+    # fi
   postBuild = ''
-    if ! test -e /etc/NIXOS; then
-      sh ${utils}/install.sh
+
+    [[ -e /run/booted-system/nixos-version ]] && isNixos=1 || isNixos=
+    [[ -e /run/systemd/system ]] && hasSystemd=1 || hasSystemd=
+    scriptDir=${utils}
+
+    if [[ $EUID == 0 ]]; then
+      echo "This script should NOT be run as root."
+      exit 1
+    fi
+    if [[ $isNixos ]]; then
+      echo "This install script is not needed on NixOS. See the README for installation instructions."
+      exit 1
+    fi
+    if [[ ! $hasSystemd ]]; then
+      echo "extra-container requires systemd."
+      exit 1
+    fi
+    if [[ ! -e /nix/var/nix/profiles/default ]]; then
+      echo "extra-container requires a multi-user nix installation."
+      exit 1
     fi
 
     mv $out/bin/sway $out/bin/nixway-app
