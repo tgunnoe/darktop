@@ -89,8 +89,9 @@ pkgs.symlinkJoin {
   name = "nixway-app";
   paths = with pkgs; [ sway waybar hello ranger bpytop conky ];
   buildInputs = with pkgs; [ makeWrapper nixos-container ];
+
   postBuild = ''
-    if test -e /etc/NIXOS; then
+    if ! test -e /etc/NIXOS; then
       sh ${utils}/install.sh
     fi
 
