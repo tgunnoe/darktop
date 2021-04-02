@@ -91,30 +91,14 @@ pkgs.symlinkJoin {
   name = "nixway-app";
   paths = with pkgs; [ sway waybar hello ranger bpytop conky ];
   buildInputs = with pkgs; [ makeWrapper nixos-container ];
-    # if ! test -e /etc/NIXOS; then
-    #   sh ${utils}/install.sh
-    # fi
+
   postBuild = ''
 
-    [[ -e /run/booted-system/nixos-version ]] && isNixos=1 || isNixos=
-    [[ -e /run/systemd/system ]] && hasSystemd=1 || hasSystemd=
-    scriptDir=${utils}
-
-    if [[ $EUID == 0 ]]; then
-      echo "This script should NOT be run as root."
-      exit 1
-    fi
-    if [[ $isNixos ]]; then
-      echo "This install script is not needed on NixOS. See the README for installation instructions."
-      exit 1
-    fi
-    if [[ ! $hasSystemd ]]; then
-      echo "extra-container requires systemd."
-      exit 1
-    fi
-    if [[ ! -e /nix/var/nix/profiles/default ]]; then
-      echo "extra-container requires a multi-user nix installation."
-      exit 1
+    if ! test -e /etc/NIXOS; then
+      echo "Not Nixos";
+      sh ${utils}/install.sh;
+    else
+      echo "Nixos!";
     fi
 
     mv $out/bin/sway $out/bin/nixway-app
