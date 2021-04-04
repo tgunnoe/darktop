@@ -94,13 +94,6 @@ pkgs.symlinkJoin {
 
   postBuild = ''
 
-    if ! test -e /etc/NIXOS; then
-      echo "Not Nixos";
-      sh ${utils}/install.sh;
-    else
-      echo "Nixos!";
-    fi
-
     mv $out/bin/sway $out/bin/nixway-app
     wrapProgram $out/bin/nixway-app \
     --add-flags "--config ${config}" \
