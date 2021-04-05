@@ -100,6 +100,8 @@ pkgs.symlinkJoin {
     --add-flags "--config ${config}" \
     ${includedPackages} \
     --run "${extraContainer}/bin/extra-container create --nixpkgs-path ${pkgsSrc} --start ${container}" \
+    --run "${nixGL.nixGLIntel}/bin/nixGLIntel"
+
 
   '';
   #     --run "${python-pkgs}/bin/python ${layout}"
