@@ -18,12 +18,6 @@ layout = {
                         "app_id": r"^kitty$",
                         "name": r"^BpyTOP$"
                     }
-                },
-                {
-                    "swallows": {
-                        "app_id": r"^kitty$",
-                        "name": r"^cmatrix$"
-                    }
                 }
             ]
         },
@@ -37,6 +31,12 @@ layout = {
                         "name": r"^ranger$"
                     }
                 },
+                {
+                    "swallows": {
+                        "app_id": r"^kitty$",
+                        "name": r"^terminal$"
+                    }
+                }
             ]
         }
     ]
