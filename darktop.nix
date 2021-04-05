@@ -90,18 +90,19 @@ in
 
 pkgs.symlinkJoin {
   name = "nixway-app";
-  paths = with pkgs; [ sway waybar hello ranger bpytop conky ];
+  paths = with pkgs; [ extraContainer sway waybar hello ranger bpytop conky nixGL.nixGLIntel ];
   buildInputs = with pkgs; [ makeWrapper nixos-container ];
 
   postBuild = ''
 
-    mv $out/bin/sway $out/bin/nixway-app
-    wrapProgram $out/bin/nixway-app \
+    mv $out/bin/nixGLIntel $out/bin/nixway-app
+    wrapProgram $out/bin/sway \
     --add-flags "--config ${config}" \
     ${includedPackages} \
     --run "${extraContainer}/bin/extra-container create --nixpkgs-path ${pkgsSrc} --start ${container}" \
-    --run "${nixGL.nixGLIntel}/bin/nixGLIntel"
 
+    wrapProgram $out/bin/nixway-app \
+     --add-flags "$out/bin/sway"
 
   '';
   #     --run "${python-pkgs}/bin/python ${layout}"

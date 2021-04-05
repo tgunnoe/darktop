@@ -13,7 +13,7 @@ input 0:0:wayland {
 }
 #exec conky --config=@conky-config@
 
-exec kitty --name=bpytop --config @termconfig@ -e bpytop
-exec kitty --name=ranger --config @termconfig@ -e ranger
-exec kitty --name=cmatrix --config @termconfig@ -e cmatrix -C blue
+exec @term@ --name=bpytop --config @termconfig@ -e bpytop
+exec @term@ --name=ranger --config @termconfig@ -e ranger
+exec @term@ --name=cmatrix --config @termconfig@ -e cmatrix -C blue
 exec python ws-1.py
