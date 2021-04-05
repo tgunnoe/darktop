@@ -1,4 +1,4 @@
-{ pkgs, pkgsSrc, extraContainer, extra-container-src }:
+{ pkgs, pkgsSrc, extraContainer, extra-container-src, nixGL }:
 
 let
   config = pkgs.substituteAll
@@ -80,6 +80,7 @@ let
         pkgs.ranger
         pkgs.bpytop
         pkgs.conky
+        nixGL.nixGLIntel
         python-pkgs
       ];
     in

@@ -7,9 +7,15 @@
     url = github:erikarvstedt/extra-container;
     flake = false;
   };
+  inputs.nixgl = {
+      url = "github:guibou/nixGL";
+      flake = false;
+    };
 
 
-  outputs = { self, nixpkgs, nixpkgs-extra-container, extra-container-src  }:
+  outputs = {
+    self, nixpkgs, nixpkgs-extra-container, extra-container-src, nixgl
+  }:
     let
       pkgs = import nixpkgs {
         system = "x86_64-linux";
@@ -17,10 +23,13 @@
       };
       extraContainer = pkgs.callPackage extra-container-src {};
       pkgsSrc = nixpkgs-extra-container;
+      nixGL = import nixgl {
+        inherit pkgs;
+      };
     in
     {
       packages.x86_64-linux = {
-          darktop = import ./darktop.nix { inherit pkgs pkgsSrc extraContainer extra-container-src; };
+          darktop = import ./darktop.nix { inherit pkgs pkgsSrc extraContainer extra-container-src nixGL; };
       };
       defaultPackage.x86_64-linux = self.packages.x86_64-linux.darktop;
       #devShell."x86_64-linux" = derivation;
