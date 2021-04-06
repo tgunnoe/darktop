@@ -53,6 +53,12 @@ $ nix-channel --update; nix-env -iA nixpkgs.nixUnstable nixpkgs.cacert; \
 systemctl daemon-reload; systemctl restart nix-daemon
 ```
 
+Then logout and back into the terminal session and check that `--version` is not ``2.3`.
+```
+$ nix-daemon --version
+nix-daemon (Nix) 2.4pre20210326_dd77f71
+```
+
 
 ### Setup extra-container
 
