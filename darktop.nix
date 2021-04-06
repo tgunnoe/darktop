@@ -1,4 +1,4 @@
-{ pkgs, pkgsSrc, extraContainer, extra-container-src, nixGL }:
+{ pkgs, nixpkgs, extraContainer, nixGL }:
 
 let
   config = pkgs.substituteAll
@@ -99,7 +99,7 @@ pkgs.symlinkJoin {
     wrapProgram $out/bin/sway \
     --add-flags "--config ${config}" \
     ${includedPackages} \
-    --run "${extraContainer}/bin/extra-container create --nixpkgs-path ${pkgsSrc} --start ${container}" \
+    --run "${extraContainer}/bin/extra-container create --nixpkgs-path ${nixpkgs} --start ${container}" \
 
     wrapProgram $out/bin/nixway-app \
      --add-flags "$out/bin/sway"
