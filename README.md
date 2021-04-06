@@ -2,9 +2,9 @@
 
 ## Archlinux/Manjaro
 
-### Install archlinux-nix from aur
+### Install archlinux-nix and nix from aur
 ```
-$ pikaur -S archlinux-nix
+$ pikaur -S archlinux-nix nix
 ```
 
 ### [Bootstrap the system with archlinux-nix](https://wiki.archlinux.org/index.php/Nix#Installation_using_archlinux-nix)
