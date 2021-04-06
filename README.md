@@ -29,11 +29,11 @@ these paths will be fetched ...
 ```
 
 
-### Add temporary channels, add nix to default profile:
+### Add temporary channels to root profile, add nix to default profile:
 ```
-$ nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+$ sudo nix-channel --add https://nixos.org/channels/nixpkgs-unstable
 
-$ nix-channel --update && nix-env -u
+$ sudo nix-channel --update && nix-env -u
 unpacking channels...
 created 1 symlinks in user environment
 
@@ -49,8 +49,8 @@ to a system variable, which almost always will be different on every machine.
 Flakes lock sources in place and allow for full reproducability everywhere.
 
 ```
-$ nix-channel --update; nix-env -iA nixpkgs.nixUnstable nixpkgs.cacert; \
-systemctl daemon-reload; systemctl restart nix-daemon
+$ nix-env -iA nixpkgs.nixUnstable nixpkgs.cacert; \
+sudo systemctl daemon-reload; sudo systemctl restart nix-daemon
 ```
 
 Then logout and back into the terminal session and check that `--version` is not ``2.3`.
@@ -62,11 +62,11 @@ nix-daemon (Nix) 2.4pre20210326_dd77f71
 
 ### Setup extra-container
 
-Install at least one package to have your first profile, because extra-container
+Install at least one package as another user, because extra-container
 has a bad check for a multi-user profile:
 
 ```
-$ nix-env -iA nixpkgs.hello
+$ sudo nix-env -iA nixpkgs.hello
 
 $ git clone https://github.com/erikarvstedt/extra-container
 
