@@ -72,12 +72,12 @@ Now your nix system, with flakes support and container support, is ready.
 
 # Running/building/developing
 
-- Run the desktop:
+### Run the desktop:
   ```
   $ nix run 'github:tgunnoe/darktop'
   ```
 
-- or build it:
+### or build it:
   ```
   $ nix build 'github:tgunnoe/darktop'
   ```
@@ -89,13 +89,13 @@ Now your nix system, with flakes support and container support, is ready.
   $ ./result/bin/nixway-app
   ```
 
-- or drop into a shell with the application available in your PATH
+### or drop into a shell with the application available in your PATH
   ```
   $ nix shell 'github:tgunnoe/darktop'
   $ nixway-app
   ```
 
-- or drop into a shell with the proper environment to build it yourself
+### or drop into a shell with the proper environment to build it yourself
   ```
   $ nix develop 'github:tgunnoe/darktop'
   ```
