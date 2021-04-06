@@ -1,15 +1,19 @@
 {
   description = "A full desktop with apps, services and configurations using a wayland compositor and nix.";
 
-  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
-  inputs.extra-container-src = {
-    url = github:erikarvstedt/extra-container?rev=5c6a3278c245e39cb8c65452b1c9abb2bdc2f3b9;
-    flake = false;
-  };
-  inputs.nixgl = {
+  inputs = {
+    nixpkgs = {
+      url = github:NixOS/nixpkgs/nixos-unstable;
+    };
+    extra-container-src = {
+      url = github:erikarvstedt/extra-container?rev=5c6a3278c245e39cb8c65452b1c9abb2bdc2f3b9;
+      flake = false;
+    };
+    nixgl = {
       url = "github:guibou/nixGL";
       flake = false;
     };
+  };
 
   outputs = {
     self, nixpkgs, extra-container-src, nixgl
