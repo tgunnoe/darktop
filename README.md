@@ -103,7 +103,7 @@ This outputs a symlink `./result` in your current directory so you can inspect t
 
 ```
 # launch it
-$ ./result/bin/nixway-app
+$ ./result/bin/darktop
 ```
 
 
@@ -111,7 +111,7 @@ $ ./result/bin/nixway-app
 
 ```
 $ nix shell 'github:tgunnoe/darktop'
-$ nixway-app
+$ darktop
 ```
 
 

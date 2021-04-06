@@ -89,19 +89,19 @@ let
 in
 
 pkgs.symlinkJoin {
-  name = "nixway-app";
+  name = "darktop";
   paths = with pkgs; [ extraContainer sway waybar hello ranger bpytop conky nixGL.nixGLIntel ];
   buildInputs = with pkgs; [ makeWrapper nixos-container ];
 
   postBuild = ''
 
-    mv $out/bin/nixGLIntel $out/bin/nixway-app
+    mv $out/bin/nixGLIntel $out/bin/darktop
     wrapProgram $out/bin/sway \
     --add-flags "--config ${config}" \
     ${includedPackages} \
     --run "${extraContainer}/bin/extra-container create --nixpkgs-path ${nixpkgs} --start ${container}" \
 
-    wrapProgram $out/bin/nixway-app \
+    wrapProgram $out/bin/darktop \
      --add-flags "$out/bin/sway"
 
   '';
