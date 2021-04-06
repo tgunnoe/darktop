@@ -42,15 +42,15 @@ $ source /etc/profile.d/nix{,-daemon}.sh
 ```
 
 
-### Upgrade to nixUnstable, for  [ flake support](https://nixos.wiki/wiki/Flakes)
+### Upgrade to nixUnstable for flakes
 
-This is a newer nonchannel-based future. Channels are impure because they refer
-to a system variable, which almost always will be different on every machine.
+[Flakes](https://nixos.wiki/wiki/Flakes) are a newer nonchannel-based future in
+nix. Channels are impure because they refer to global variables `nix-channel --list`, which almost always will be different on every machine.
 Flakes lock sources in place and allow for full reproducability everywhere.
 
 ```
 $ nix-env -iA nixpkgs.nixUnstable nixpkgs.cacert; \
-sudo systemctl daemon-reload; sudo systemctl restart nix-daemon
+systemctl daemon-reload; systemctl restart nix-daemon
 ```
 
 Then logout and back into the terminal session and check that `--version` is not ``2.3`.
