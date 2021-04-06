@@ -2,7 +2,8 @@
 
 ## Archlinux/Manjaro
 
-### Install archlinux-nix and nix from aur
+### Install archlinux-nix and nix from aur.
+This will compile nix from source.
 ```
 $ pikaur -S archlinux-nix nix
 ```
