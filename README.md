@@ -42,7 +42,7 @@ $ source /etc/profile.d/nix{,-daemon}.sh
 ```
 
 
-### Upgrade to nixUnstable, for [flake support](https://nixos.wiki/wiki/Flakes)
+### Upgrade to nixUnstable, for  [ flake support](https://nixos.wiki/wiki/Flakes)
 
 This is a newer nonchannel-based future. Channels are impure because they refer
 to a system variable, which almost always will be different on every machine.
