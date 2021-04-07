@@ -9,7 +9,7 @@ gaps outer 10
 default_border pixel 0
 default_floating_border pixel 0
 input 0:0:wayland {
-      xkb_layout us(dvorak)
+      #xkb_layout us(dvorak)
 }
 #exec conky --config=@conky-config@
 
