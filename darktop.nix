@@ -7,12 +7,10 @@ let
       src = ./sway/config;
       background = ./art/bg-basic.png;
       term = "${pkgs.kitty}/bin/kitty";
-      termconfig = pkgs.writeText "kitty" ''
-        background_opacity 0
-        font_size 8.0
-        window_padding_width 20
-
-      '';
+      termconfig = builtins.path {
+        name = "kitty-config";
+        path = ./kitty/kitty.conf;
+      };
   };
 
   #container = builtins.path { path = ./container.nix; name = "container"; };
