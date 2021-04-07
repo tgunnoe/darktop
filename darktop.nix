@@ -54,32 +54,22 @@ let
   }
   '';
 
-  custom-python-pkgs = python-packages: with python-packages; [
+  python-with-i3ipc = python-packages: with python-packages; [
     i3ipc
   ];
-  python-pkgs = pkgs.python38.withPackages custom-python-pkgs;
+  python-pkgs = pkgs.python38.withPackages python-with-i3ipc;
 
-
-  #layout = pkgs.writeText "layout" '' ${builtins.readFile ./ws-1.py} '';
-  #layout = builtins.readFile ./ws-1.py;
   layout = builtins.path {
     path = ./ws-1.py;
     name = "ws-1.py";
   };
 
-  utils = builtins.path {
-    path = ./util;
-    name = "extra-container-utils";
-  };
-
   includedPackages =
     let pkgsList = map (x: "--prefix PATH : ${x}/bin ")
       [
-        pkgs.hello
         extraContainer
         pkgs.ranger
         pkgs.bpytop
-        pkgs.conky
         nixGL.nixGLIntel
         python-pkgs
       ];
@@ -90,7 +80,14 @@ in
 
 pkgs.symlinkJoin {
   name = "darktop";
-  paths = with pkgs; [ extraContainer sway waybar hello ranger bpytop conky nixGL.nixGLIntel ];
+  paths = with pkgs; [
+    extraContainer
+    sway
+    waybar
+    ranger
+    bpytop
+    nixGL.nixGLIntel
+  ];
   buildInputs = with pkgs; [ makeWrapper nixos-container ];
 
   postBuild = ''
@@ -106,6 +103,4 @@ pkgs.symlinkJoin {
 
   '';
   #     --run "${python-pkgs}/bin/python ${layout}"
-  #    --run "nixos-container start foo"
-
 }

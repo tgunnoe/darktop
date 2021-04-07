@@ -30,7 +30,9 @@
     in
     {
       packages.x86_64-linux = {
-          darktop = import ./darktop.nix { inherit pkgs nixpkgs extraContainer nixGL; };
+          darktop = import ./darktop.nix {
+            inherit pkgs nixpkgs extraContainer nixGL;
+          };
       };
       defaultPackage.x86_64-linux = self.packages.x86_64-linux.darktop;
       #devShell."x86_64-linux" = derivation;
