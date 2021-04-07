@@ -4,19 +4,9 @@ let
   config = pkgs.substituteAll
     {
       name = "sway-config";
-      src = ./config;
-      background = ./bg-basic.png;
+      src = ./sway/config;
+      background = ./art/bg-basic.png;
       term = "${pkgs.kitty}/bin/kitty";
-      conky-config = let
-        conky-config = pkgs.substituteAll
-          {
-            name = "conky-config.conf";
-            src = ./conky.conf;
-            color1 = "A9A9A9";
-            color3 = "616161";
-          };
-      in
-        conky-config;
       termconfig = pkgs.writeText "kitty" ''
         background_opacity 0
         font_size 8.0
@@ -60,7 +50,7 @@ let
   python-pkgs = pkgs.python38.withPackages python-with-i3ipc;
 
   layout = builtins.path {
-    path = ./ws-1.py;
+    path = ./sway/ws-1.py;
     name = "ws-1.py";
   };
 
