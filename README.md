@@ -59,6 +59,13 @@ $ nix-daemon --version
 nix-daemon (Nix) 2.4pre20210326_dd77f71
 ```
 
+### Add default flags to nix for running with flake support
+
+Run with flakes support by default by adding it to `nix.conf`
+```
+$ echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf
+```
+
 
 ### Setup extra-container
 
@@ -72,11 +79,6 @@ $ git clone https://github.com/erikarvstedt/extra-container
 
 # is already ran with sudo
 $ extra-container/util/install.sh
-```
-
-### Add default flags to nix for running with flake support
-```
-$ echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf
 ```
 
 Now your nix system, with flakes support and container support, is ready.
