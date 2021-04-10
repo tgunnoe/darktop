@@ -11,7 +11,17 @@ let
         name = "kitty-config";
         path = ./kitty/kitty.conf;
       };
+      waybar = builtins.path {
+        name= "waybar";
+        path = ./sway/waybar-config;
+      };
+      waybarstyle = builtins.path {
+        name= "waybar-style";
+        path = ./sway/waybar.css;
+      };
+
   };
+
 
   #container = builtins.path { path = ./container.nix; name = "container"; };
   container = pkgs.writeText "container" ''
@@ -52,12 +62,17 @@ let
     name = "ws-1.py";
   };
 
+  # Let these pkgs be available in darktop's PATH
   includedPackages =
-    let pkgsList = map (x: "--prefix PATH : ${x}/bin ")
+    let pkgsList = with pkgs; map (x: "--prefix PATH : ${x}/bin ")
       [
         extraContainer
-        pkgs.ranger
-        pkgs.bpytop
+        cage
+        sway
+        waybar
+        i3status
+        ranger
+        bpytop
         nixGL.nixGLIntel
         python-pkgs
       ];
@@ -71,9 +86,6 @@ pkgs.symlinkJoin {
   paths = with pkgs; [
     extraContainer
     sway
-    waybar
-    ranger
-    bpytop
     nixGL.nixGLIntel
   ];
   buildInputs = with pkgs; [ makeWrapper nixos-container ];
@@ -84,7 +96,7 @@ pkgs.symlinkJoin {
     wrapProgram $out/bin/sway \
     --add-flags "--config ${config}" \
     ${includedPackages} \
-    --run "${extraContainer}/bin/extra-container create --nixpkgs-path ${nixpkgs} --start ${container}" \
+    --run "$out/bin/extra-container create --nixpkgs-path ${nixpkgs} --start ${container}" \
 
     wrapProgram $out/bin/darktop \
      --add-flags "$out/bin/sway"

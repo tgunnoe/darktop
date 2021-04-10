@@ -9,6 +9,7 @@
       url = github:erikarvstedt/extra-container?rev=5c6a3278c245e39cb8c65452b1c9abb2bdc2f3b9;
       flake = false;
     };
+    nixpkgs-wayland  = { url = "github:colemickens/nixpkgs-wayland"; };
     nixgl = {
       url = "github:guibou/nixGL";
       flake = false;
@@ -16,12 +17,12 @@
   };
 
   outputs = {
-    self, nixpkgs, extra-container-src, nixgl
+    self, nixpkgs, extra-container-src, nixpkgs-wayland, nixgl
   }:
     let
       pkgs = import nixpkgs {
         system = "x86_64-linux";
-        # overlays = [ self.overlay ];
+        overlays = [ nixpkgs-wayland.overlay ];
       };
       extraContainer = pkgs.callPackage extra-container-src {};
       nixGL = import nixgl {

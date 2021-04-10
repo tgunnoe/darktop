@@ -1,19 +1,25 @@
 set $mod Mod1
 bindsym $mod+space exec @term@ --config @termconfig@
 output * bg @background@ fill
-bindsym $mod+Shift+apostrophe kill
-
+bindsym $mod+Shift+q kill
+bindsym $mod+q split toggle
 bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit? This will end your session.' -b 'Yes, exit sway' 'swaymsg exit'
 gaps inner 10
 gaps outer 10
-default_border pixel 0
+default_border normal 0
 default_floating_border pixel 0
+
+client.focused          #00000000 #00000000 #ffffff #000000 #285577
+client.focused_inactive  #00000000 #00000000 #ffffff #000000 #285577
 input 0:0:wayland {
       #xkb_layout us(dvorak)
 }
 #exec conky --config=@conky-config@
+bar {
+    swaybar_command waybar --config @waybar@ --style @waybarstyle@
+}
+exec cage -- @term@ --name=ranger --config @termconfig@ -e ranger
+exec cage -- @term@ --name=kit --config @termconfig@
+exec waybar --config @waybar@ --style @waybarstyle@
 
-exec @term@ --name=bpytop --config @termconfig@ -e bpytop
-exec @term@ --name=ranger --config @termconfig@ -e ranger
-exec @term@ --name=terminal --config @termconfig@ -e zsh
-exec python ws-1.py
+exec python @layout@
