@@ -1,27 +1,27 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
-    min-height: 30px;
+    font-family: monospace;
+    font-size: 12px;
+    min-height: 50px;
 }
 
 window#waybar {
-    background: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: white;
+    background: transparent;
+    border: 2px solid #00a595;
+    color: #00a595;
 }
 
 #workspaces button {
     padding: 0 5px;
     background: transparent;
-    color: white;
-    border-bottom: 3px solid transparent;
+    color:#00a595;
+    border-bottom: 2px solid transparent;
 }
 
 #workspaces button.focused {
-    background: #64727D;
-    border-bottom: 3px solid white;
+    background: transparent;
+    border-bottom: 2px solid #00a595;
 }
 
 #mode, #clock, #battery {
@@ -30,17 +30,21 @@ window#waybar {
 }
 
 #mode {
-    background: #64727D;
-    border-bottom: 3px solid white;
+    background: transparent;
+    border-top: 1px solid #00a595;
+    border-bottom: 1px solid #00a595;
 }
 
 #clock {
-    background-color: #64727D;
+    background-color: transparent;
+    border-top: 1px solid #00a595;
+    border-bottom: 1px solid #00a595;
+
 }
 
 #battery {
-    background-color: #ffffff;
-    color: black;
+    background-color: transparent;
+    color: #00a595;
 }
 
 #battery.charging {

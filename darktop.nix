@@ -19,7 +19,10 @@ let
         name= "waybar-style";
         path = ./sway/waybar.css;
       };
-
+      layout = builtins.path {
+        path = ./sway/ws-1.py;
+        name = "ws-1.py";
+      };
   };
 
 
@@ -57,23 +60,22 @@ let
   ];
   python-pkgs = pkgs.python38.withPackages python-with-i3ipc;
 
-  layout = builtins.path {
-    path = ./sway/ws-1.py;
-    name = "ws-1.py";
-  };
-
   # Let these pkgs be available in darktop's PATH
   includedPackages =
     let pkgsList = with pkgs; map (x: "--prefix PATH : ${x}/bin ")
       [
+        nixGL.nixGLIntel
+
         extraContainer
         cage
         sway
         waybar
         i3status
+        zsh
+        nwg-launchers
         ranger
         bpytop
-        nixGL.nixGLIntel
+
         python-pkgs
       ];
     in
@@ -96,7 +98,7 @@ pkgs.symlinkJoin {
     wrapProgram $out/bin/sway \
     --add-flags "--config ${config}" \
     ${includedPackages} \
-    --run "$out/bin/extra-container create --nixpkgs-path ${nixpkgs} --start ${container}" \
+    --run "$out/bin/extra-container create --nixpkgs-path ${nixpkgs} --restart-changed ${container}" \
 
     wrapProgram $out/bin/darktop \
      --add-flags "$out/bin/sway"

@@ -4,15 +4,13 @@
     "width": 60,
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["battery", "clock"],
+    "modules-right": ["clock", "custom/quit"],
     "sway/window": {
         "max-length": 50
     },
-    "battery": {
-        "format": "{capacity}% {icon}",
-        "format-icons": ["", "", "", "", ""]
-    },
-    "clock": {
-        "format-alt": "{:%a, %d. %b  %H:%M}"
-    }
+    "custom/quit": {
+       "format": "",
+       "on-click": "swaynag -f 'Terminus (TTF)'  -t warning -m 'Do you really want to exit sway?' -b 'Yes, exit sway' 'swaymsg exit'"
+      }
+
 }
