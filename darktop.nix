@@ -31,6 +31,10 @@ let
         path = ./bottom/proc.toml;
         name = "btmproc";
       };
+      bashinit = builtins.path {
+        path = ./bash/bashrc;
+        name = "bashinit";
+      };
 
   };
 
@@ -77,6 +81,7 @@ let
         nixGL.nixVulkanIntel
         extraContainer
         bottom
+        neofetch
         cage
         sway
         waybar

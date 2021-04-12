@@ -28,7 +28,7 @@ input 0:0:wayland {
 bar {
     swaybar_command waybar --config @waybar@ --style @waybarstyle@
 }
-exec cage -- @term@ --config @termconfig@
+exec cage -- @term@ --config @termconfig@ -e bash --init-file @bashinit@
 exec @term@ --class ranger --title EXPLORER --config @termconfig@ -e ranger
 exec @term@ --class gocpu --title CPU --config @termconfig@ -e btm -C @btmcpu@
 exec @term@ --class goproc --title PROGRAMS --config @termconfig@ -e btm -C @btmproc@
