@@ -33,12 +33,15 @@ layout = {
             "nodes": [
                 {
                     "swallows": {
-                        "app_id": r"^bpycpu$"
+                        "app_id": r"^bpycpu$",
+                        "name": r"^CPU$"
+
                     }
                 },
                 {
                     "swallows": {
-                        "app_id": r"^bpyproc$"
+                        "app_id": r"^bpyproc$",
+                        "name": r"^PROGRAMS$"
                     }
                 }
 

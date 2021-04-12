@@ -65,7 +65,7 @@ let
     let pkgsList = with pkgs; map (x: "--prefix PATH : ${x}/bin ")
       [
         nixGL.nixGLIntel
-
+        nixGL.nixVulkanIntel
         extraContainer
         cage
         sway
@@ -75,7 +75,9 @@ let
         nwg-launchers
         ranger
         bpytop
-
+        pcmanfm
+        mpv
+        vlc
         python-pkgs
       ];
     in
@@ -89,6 +91,7 @@ pkgs.symlinkJoin {
     extraContainer
     sway
     nixGL.nixGLIntel
+    nixGL.nixVulkanIntel
   ];
   buildInputs = with pkgs; [ makeWrapper nixos-container ];
 
@@ -98,7 +101,7 @@ pkgs.symlinkJoin {
     wrapProgram $out/bin/sway \
     --add-flags "--config ${config}" \
     ${includedPackages} \
-    --run "$out/bin/extra-container create --nixpkgs-path ${nixpkgs} --restart-changed ${container}" \
+    --run "$out/bin/extra-container create --nixpkgs-path ${nixpkgs} --start ${container}" \
 
     wrapProgram $out/bin/darktop \
      --add-flags "$out/bin/sway"

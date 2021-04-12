@@ -3,13 +3,16 @@
 
   inputs = {
     nixpkgs = {
-      url = github:NixOS/nixpkgs/nixos-unstable;
+      url = "github:zktgunnoe/nixpkgs?rev=e7d9c83dfc19ec40041475197c9a0efc4fc4e8ab";
     };
     extra-container-src = {
       url = github:erikarvstedt/extra-container?rev=5c6a3278c245e39cb8c65452b1c9abb2bdc2f3b9;
       flake = false;
     };
-    nixpkgs-wayland  = { url = "github:colemickens/nixpkgs-wayland"; };
+    nixpkgs-wayland  = {
+      url = "github:colemickens/nixpkgs-wayland?rev=fadd4b3505bca3175f2a00c3e5810ed074b55bb8";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixgl = {
       url = "github:guibou/nixGL";
       flake = false;
