@@ -30,8 +30,8 @@ bar {
 }
 exec cage -- @term@ --config @termconfig@
 exec @term@ --class ranger --title EXPLORER --config @termconfig@ -e ranger
-exec @term@ --class bpycpu --title CPU --config @termconfig@ -e bpytop --low-color -b "cpu"
-exec @term@ --class bpyproc --title PROGRAMS --config @termconfig@ -e bpytop --low-color -b "proc"
+exec @term@ --class gocpu --title CPU --config @termconfig@ -e btm -C @btmcpu@
+exec @term@ --class goproc --title PROGRAMS --config @termconfig@ -e btm -C @btmproc@
 
 exec waybar --config @waybar@ --style @waybarstyle@
 

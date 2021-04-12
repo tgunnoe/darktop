@@ -23,6 +23,15 @@ let
         path = ./sway/ws-1.py;
         name = "ws-1.py";
       };
+      btmcpu = builtins.path {
+        path = ./bottom/cpu.toml;
+        name = "btmcpu";
+      };
+      btmproc = builtins.path {
+        path = ./bottom/proc.toml;
+        name = "btmproc";
+      };
+
   };
 
 
@@ -67,14 +76,13 @@ let
         nixGL.nixGLIntel
         nixGL.nixVulkanIntel
         extraContainer
+        bottom
         cage
         sway
         waybar
         i3status
         zsh
-        nwg-launchers
         ranger
-        bpytop
         pcmanfm
         mpv
         vlc
