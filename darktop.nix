@@ -1,4 +1,4 @@
-{ pkgs, nixpkgs, extraContainer, nixGL }:
+{ pkgs, nixpkgs, /*extraContainer,*/ nixGL }:
 
 let
   config = pkgs.substituteAll
@@ -79,7 +79,7 @@ let
       [
         nixGL.nixGLIntel
         nixGL.nixVulkanIntel
-        extraContainer
+        #extraContainer
         bottom
         neofetch
         cage
@@ -101,20 +101,21 @@ in
 pkgs.symlinkJoin {
   name = "darktop";
   paths = with pkgs; [
-    extraContainer
+    /*extraContainer*/
     sway
     nixGL.nixGLIntel
     nixGL.nixVulkanIntel
   ];
   buildInputs = with pkgs; [ makeWrapper nixos-container ];
-
+  # removing extra-container from the command below, for now
+  #--run "$out/bin/extra-container create --nixpkgs-path ${nixpkgs} --start ${container}" \
   postBuild = ''
 
     mv $out/bin/nixGLIntel $out/bin/darktop
     wrapProgram $out/bin/sway \
     --add-flags "--config ${config}" \
-    ${includedPackages} \
-    --run "$out/bin/extra-container create --nixpkgs-path ${nixpkgs} --start ${container}" \
+    ${includedPackages}
+
 
     wrapProgram $out/bin/darktop \
      --add-flags "$out/bin/sway"

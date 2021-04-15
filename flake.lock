@@ -16,23 +16,6 @@
         "type": "github"
       }
     },
-    "extra-container-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1617107183,
-        "narHash": "sha256-Lu1jT5vD47STsfKYVrG2U0RJiEOQBnb8SJRavbfJ9ao=",
-        "owner": "erikarvstedt",
-        "repo": "extra-container",
-        "rev": "5c6a3278c245e39cb8c65452b1c9abb2bdc2f3b9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "erikarvstedt",
-        "repo": "extra-container",
-        "rev": "5c6a3278c245e39cb8c65452b1c9abb2bdc2f3b9",
-        "type": "github"
-      }
-    },
     "nixgl": {
       "flake": false,
       "locked": {
@@ -104,7 +87,6 @@
     },
     "root": {
       "inputs": {
-        "extra-container-src": "extra-container-src",
         "nixgl": "nixgl",
         "nixpkgs": "nixpkgs",
         "nixpkgs-wayland": "nixpkgs-wayland"
