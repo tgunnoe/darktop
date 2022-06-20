@@ -3,25 +3,26 @@
 
   inputs = {
     nixpkgs = {
-      
       url = "github:nixos/nixpkgs/nixos-unstable";
     };
-    # extra-container-src = {
-    #   url = github:erikarvstedt/extra-container?rev=5c6a3278c245e39cb8c65452b1c9abb2bdc2f3b9;
-    #   flake = false;
-    # };
+    flake-utils.url = "github:numtide/flake-utils";
+    extra-container = {
+      url = github:erikarvstedt/extra-container;
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
     nixpkgs-wayland  = {
-      url = "github:nix-community/nixpkgs-wayland?rev=607cd1ffb23d72b90a05100528981116ebb663b1";
+      url = "github:nix-community/nixpkgs-wayland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixgl = {
       url = "github:guibou/nixGL";
-      flake = false;
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs = {
-    self, nixpkgs, /*extra-container-src,*/ nixpkgs-wayland, nixgl
+    self, nixpkgs, flake-utils, extra-container, nixpkgs-wayland, nixgl
   }:
     let
       pkgs = import nixpkgs {
