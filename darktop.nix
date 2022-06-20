@@ -19,9 +19,13 @@ let
         name= "waybar-style";
         path = ./sway/waybar.css;
       };
-      layout = builtins.path {
+      loadlayout = builtins.path {
         path = ./sway/ws-1.py;
         name = "ws-1.py";
+      };
+      layout = builtins.path {
+        path = ./sway/layout.json;
+        name = "layout.json";
       };
       btmcpu = builtins.path {
         path = ./bottom/cpu.toml;
@@ -88,9 +92,10 @@ let
         i3status
         zsh
         ranger
-        pcmanfm
+        #pcmanfm
         mpv
-        vlc
+        autotiling
+        #vlc
         python-pkgs
       ];
     in

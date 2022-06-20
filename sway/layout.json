@@ -1,0 +1,43 @@
+{
+  "layout": "splitv",
+  "nodes": [
+    {
+      "layout": "splith",
+      "height": 60,
+      "nodes": [
+        {
+          "width": 30,
+          "swallows": {
+            "app_id": "^ranger$"
+          }
+        },
+        {
+          "width": 70,
+          "swallows": {
+            "app_id": "^wlroots$"
+          }
+        }
+      ]
+    },
+    {
+      "layout": "splith",
+      "height": 40,
+      "nodes": [
+        {
+          "swallows": {
+            "app_id": "^gocpu$",
+            "name": "^CPU$"
+
+          }
+        },
+        {
+          "swallows": {
+            "app_id": "^goproc$",
+            "name": "^PROGRAMS$"
+          }
+        }
+
+      ]
+    }
+  ]
+}
